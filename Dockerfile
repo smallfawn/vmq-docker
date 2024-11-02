@@ -15,10 +15,9 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 
 # 设置工作目录
 WORKDIR /vmq
-RUN chown -R application /vmq \
-    && chmod -R 0755 /vmq/ \
-RUN chmod -R 755 /vmq
+
 
 COPY main/ /vmq
-
+RUN chown -R application /vmq
+RUN chmod -R 0755 /vmq
 CMD ["sh", "-c", "php-fpm7 && nginx -g 'daemon off;'"]
