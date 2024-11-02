@@ -18,5 +18,5 @@ WORKDIR /vmq
 
 COPY main/ /vmq
 RUN chown -R application /vmq
-RUN chmod -R 0755 /vmq
+RUN chmod -R 0777 /vmq
 CMD ["sh", "-c", "php-fpm7 && nginx -g 'daemon off;'"]
