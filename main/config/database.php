@@ -62,3 +62,9 @@ return [
     // 断线标识字符串
     'break_match_str' => [],
 ];
+print_r(getenv('DB_HOST'));
+print_r(getenv('DB_NAME'));
+print_r(getenv('DB_USER'));
+print_r(getenv('DB_PASSWORD'));
+print_r(getenv('DB_PORT'));
+
