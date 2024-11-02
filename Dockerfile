@@ -1,10 +1,5 @@
 FROM alpine:3.13
 LABEL maintainer="sudo@dov.moe"
-ENV DB_HOST=127.0.0.1
-ENV DB_NAME=vmq
-ENV DB_USER=root
-ENV DB_PASSWORD=XXX
-ENV DB_PORT=3306
 # Install required packages
 RUN apk --no-cache add bash php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype php7-session \
