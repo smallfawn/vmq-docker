@@ -1,5 +1,5 @@
 # 使用 php-nginx:7.4-alpine 作为基础镜像  
-FROM php-nginx:7.4-alpine  
+FROM ioiox/php-nginx:7.4-alpine  
   
 
 WORKDIR /vmq  
