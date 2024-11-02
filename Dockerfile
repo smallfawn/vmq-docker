@@ -1,38 +1,21 @@
-# 使用官方的 PHP 7.4 FPM 镜像作为基础镜像  
-FROM php:7.4-fpm  
-  
-# 安装 Nginx 和一些必要的 PHP 扩展  
-RUN apt-get update && apt-get install -y \  
-    nginx \  
-    libzip-dev \  
-    zip \  
-    unzip \  
-    && docker-php-ext-install zip exif \  
-    && rm -rf /var/lib/apt/lists/*  
-  
-# 复制自定义的 nginx 配置文件  
+FROM alpine
+
+# Install required packages
+RUN apk --no-cache add bash php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
+    php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype php7-session \
+    php7-zip php7-fileinfo php7-bcmath php7-tokenizer php7-xmlwriter php7-pcntl php7-simplexml \
+    php7-mbstring php7-gd php7-redis php7-pdo php7-pdo_mysql nginx
+
+# 复制自定义的 nginx 配置文件（假设 nginx.conf 是完整配置）
 #COPY nginx.conf /etc/nginx/nginx.conf  
+# 如果使用 conf.d 方式，确保 default.conf 内容完整且正确
 COPY default.conf /etc/nginx/conf.d/default.conf  
-  
-# 设置工作目录  
-WORKDIR /var/www/html  
-  
-# 复制 PHP 应用程序代码到工作目录  
-# 假设您有一个名为 'main' 的目录，其中包含您的 PHP 应用代码  
-COPY main/ /var/www/html  
-  
-# 确保 Nginx 可以访问 PHP 应用代码的公共目录  
-RUN ln -s /var/www/html/public /var/www/html/public  
-  
-# 暴露端口  
-EXPOSE 80  
-  
-# 设置环境变量，确保 PHP-FPM 监听在正确的地址和端口上  
-ENV PHP_FPM_LISTEN=127.0.0.1:9000  
-  
-# 启动脚本，用于启动 Nginx 和 PHP-FPM  
-COPY entrypoint.sh /entrypoint.sh  
-RUN chmod +x /entrypoint.sh  
-  
-# 使用自定义的 entrypoint 脚本来启动服务  
-ENTRYPOINT ["/entrypoint.sh"]
+
+# 设置工作目录
+WORKDIR /vmq
+RUN chown -R nobody:nobody /vmq
+RUN chmod -R 755 /vmq
+
+COPY main/ /vmq
+
+CMD ["sh", "-c", "php-fpm7 && nginx -g 'daemon off;'"]
