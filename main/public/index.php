@@ -10,6 +10,30 @@
 // +----------------------------------------------------------------------
 
 // [ 应用入口文件 ]
+
+$contents = file_get_contents('.env');
+ 
+// 将文件内容按行分割成数组
+$lines = explode("\n", $contents);
+ 
+// 遍历每一行
+foreach ($lines as $line) {
+    // 忽略空行和注释行
+    if (empty($line) || strpos($line, '#') === 0) {
+        continue;
+    }
+     
+    // 解析键值对
+    list($key, $value) = explode('=', $line, 2);
+     
+    // 去除键和值两端的空格
+    $key = trim($key);
+    $value = trim($value);
+     
+    // 将变量设置为环境变量
+    putenv("$key=$value");
+}
+
 namespace think;
 
 // 加载基础文件
