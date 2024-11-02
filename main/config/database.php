@@ -8,7 +8,8 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-$contents = file_get_contents('.env');
+$file_path = "/vmq/set.conf";
+$contents = file_get_contents($file_path);
  
 // 将文件内容按行分割成数组
 $lines = explode("\n", $contents);
