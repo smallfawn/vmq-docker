@@ -8,6 +8,9 @@ services:
     volumes:
       - ./set.conf:/vmq/set.conf
 ```
+```
+搭建完毕后使用 IP:1152打开页面  如果端口备用了那么就自己修改
+```
 ```conf
 DB_HOST=127.0.0.1 #数据库地址
 DB_NAME=vmq #数据库名
