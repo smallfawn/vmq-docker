@@ -139,7 +139,7 @@ class Index
                 "vvalue"=>$key['vvalue']
             ));
         }
-        $file_path = "/vmq/set.conf";
+        $file_path = "/vmq/key.conf";
         
         // 读取文件内容
         $content = file_get_contents($file_path);

@@ -1,7 +1,7 @@
 <?php
 ini_set("error_reporting","E_ALL & ~E_NOTICE");
 
-$file_path = "/vmq/set.conf";
+$file_path = "/vmq/key.conf";
 $vmq_key_value = null;
 $content = file_get_contents($file_path);
 $lines = explode("\n", $content);
