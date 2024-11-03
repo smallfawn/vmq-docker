@@ -1,6 +1,18 @@
 <?php
 ini_set("error_reporting","E_ALL & ~E_NOTICE");
-$key = getenv('key');
+$file_path = "/vmq/set.conf";
+$vmq_key_value = null;
+$content = file_get_contents($file_path);
+$lines = explode("\n", $content);
+foreach ($lines as $line) {
+    $trimmedLine = trim($line);
+    if (strpos($trimmedLine, 'VMQ_KEY=') === 0) {
+        $vmq_key_value = substr($trimmedLine, strlen('VMQ_KEY='));
+        break;
+    }
+}
+
+$key = $vmq_key_value;
 $payId = $_GET['payId'];//商户订单号
 $param = $_GET['param'];//创建订单的时候传入的参数
 $type = $_GET['type'];//支付方式 ：微信支付为1 支付宝支付为2

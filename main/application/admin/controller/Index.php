@@ -139,7 +139,32 @@ class Index
                 "vvalue"=>$key['vvalue']
             ));
         }
-        putenv("key=".$key['vvalue']);
+        $file_path = "/vmq/set.conf";
+        
+        // 读取文件内容
+        $content = file_get_contents($file_path);
+        $lines = explode("\n", $content);
+        $found = false;
+        foreach ($lines as $line) {
+            $trimmedLine = trim($line);
+            if (strpos($trimmedLine, 'VMQ_KEY=') === 0) {
+                $found = true;
+                break;
+            }
+        }
+        
+        if (!$found) {
+            // 文件内容不包含VMQ_KEY，执行写入操作
+            $fp = fopen($file_path, 'w');
+            if ($fp) {
+                fwrite($fp, "VMQ_KEY={$key['vvalue']}\n");
+                fclose($fp);
+            } else {
+                
+            }
+        } else {
+            
+        }
         return json($this->getReturn(1,"成功",array(
             "user"=>$user['vvalue'],
             "pass"=>$pass['vvalue'],

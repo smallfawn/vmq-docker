@@ -32,6 +32,9 @@ foreach ($lines as $line) {
     putenv("$key=$value");
 }
 
+
+
+
 return [
     // 数据库类型
     'type'            => 'mysql',
