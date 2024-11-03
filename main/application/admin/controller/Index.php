@@ -139,7 +139,7 @@ class Index
                 "vvalue"=>$key['vvalue']
             ));
         }
-        putenv("key=$key['vvalue']");
+        putenv("key=".$key['vvalue']);
         return json($this->getReturn(1,"成功",array(
             "user"=>$user['vvalue'],
             "pass"=>$pass['vvalue'],
