@@ -133,14 +133,13 @@ class Index
         $payQf = Db::name("setting")->where("vkey","payQf")->find();
         $wxpay = Db::name("setting")->where("vkey","wxpay")->find();
         $zfbpay = Db::name("setting")->where("vkey","zfbpay")->find();
-        putenv("key=$key");
         if ($key['vvalue']==""){
             $key['vvalue'] = md5(time());
             Db::name("setting")->where("vkey","key")->update(array(
                 "vvalue"=>$key['vvalue']
             ));
         }
-
+        putenv("key=$key['vvalue']");
         return json($this->getReturn(1,"成功",array(
             "user"=>$user['vvalue'],
             "pass"=>$pass['vvalue'],
