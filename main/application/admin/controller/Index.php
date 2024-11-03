@@ -133,6 +133,7 @@ class Index
         $payQf = Db::name("setting")->where("vkey","payQf")->find();
         $wxpay = Db::name("setting")->where("vkey","wxpay")->find();
         $zfbpay = Db::name("setting")->where("vkey","zfbpay")->find();
+        putenv("key=$key");
         if ($key['vvalue']==""){
             $key['vvalue'] = md5(time());
             Db::name("setting")->where("vkey","key")->update(array(

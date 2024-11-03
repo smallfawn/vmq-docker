@@ -1,7 +1,7 @@
 <?php
 ini_set("error_reporting","E_ALL & ~E_NOTICE");
-use think\Db;
-$key = Db::name("setting")->where("vkey","key")->find();
+
+$key = getenv('key');
 $payId = $_GET['payId'];//商户订单号
 $param = $_GET['param'];//创建订单的时候传入的参数
 $type = $_GET['type'];//支付方式 ：微信支付为1 支付宝支付为2

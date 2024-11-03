@@ -1,7 +1,6 @@
 <?php
 ini_set("error_reporting","E_ALL & ~E_NOTICE");
-use think\Db;
-$key = Db::name("setting")->where("vkey","key")->find();
+$key = getenv('key');
 $host = "../createOrder";
 
 $sign = md5($_GET['payId'].$_GET['param'].$_GET['type'].$_GET['price'].$key);
