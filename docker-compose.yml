@@ -1,0 +1,9 @@
+services:
+  vmq:
+    image: yanyu.icu/smallfawn/vmq
+    container_name: vmq
+    ports:
+      - "1152:1152"  # 宿主机端口:容器内端口
+    volumes:
+      - ./set.conf:/vmq/set.conf
+
