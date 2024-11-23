@@ -64,6 +64,7 @@
             </div>
             <div id="orderbody">
                 <div class="amount" id="money">￥{{ reallyPrice }}</div>
+                <div class="account">订单号：{{ getQueryString("orderId") }}</div>
                 <div class="qrcode-img-wrapper" data-role="qrPayImgWrapper">
                     <div data-role="qrPayImg" class="qrcode-img-area">
                         <div class="ui-loading qrcode-loading" data-role="qrPayImgLoading" style="display: none;">加载中
@@ -135,7 +136,7 @@
 
                     <a href="javascript:void(0)" class="arrow" onclick="aaa()"><i class="ico-arrow"></i></a>
                     <br>
-                    <button id="" class="buttonA" onclick="check()">手动确认付款完毕</button>
+                    <button id="" class="buttonA" onclick="check()">付款完未跳转？手动确认付款完毕</button>
                 </div>
             </div>
 
