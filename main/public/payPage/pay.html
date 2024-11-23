@@ -72,9 +72,10 @@
                         <div style="position: relative;display: inline-block;">
                             <img id='show_qrcode' alt="加载中..." :src="'../enQrcode?url='+payUrl" width="210" height="210"
                                 style="display: block;">
-                            <button id="" class="buttonA" onclick="saveQRCode()">保存二维码</button><button id=""
-                                class="buttonA" onclick="jumpWeixin()">跳转到微信</button>
+                            <button id="" class="buttonA" onclick="saveQRCode()">保存二维码</button>
 
+                            <button v-if="payType == 1" id="" class="buttonA" onclick="jumpWeixin()">跳转到微信</button>
+                            <button v-if="payType == 2" id="" class="buttonA" onclick="jumpAlipay()">跳转到支付宝</button>
 
 
 
@@ -297,8 +298,38 @@
         }
         //
         function jumpWeixin() {
-
             window.location.href = 'weixin://'
+        }
+        function jumpAlipay() {
+            /*
+            //跳转支付宝支付相应金额
+amount 金额
+account 支付宝号码
+memo 备注
+
+alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=1.00&account=13048900631&memo=%E5%
+
+            打开收款
+
+alipays://platformapi/startapp?appId=20000123
+1
+打开 AA 收款
+
+alipays://platformapi/startapp?appId=20000263
+1
+打开付款
+
+alipay://platformapi/startapp?appId=20000056
+1
+打开转账
+
+alipayqr://platformapi/startapp?saId=20000116
+1
+打开二维码扫一扫
+
+alipayqr://platformapi/startapp?saId=10000007
+*/
+            window.location.href = 'alipays://'
         }
         (function identifyDevicePlatform() {
             var os = function () {
