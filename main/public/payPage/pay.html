@@ -22,8 +22,8 @@
     <script src="https://lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script>
     <style>
         /* 定义按钮的通用样式 */
-        #confirmPayment {
-            background-color: #4CAF50;
+        .buttonA {
+            background-color: #1b8d1e;
             /* 设置背景颜色为绿色 */
             border: none;
             /* 去除边框 */
@@ -37,7 +37,7 @@
             /* 去除下划线 */
             display: inline-block;
             /* 以行内块元素显示 */
-            font-size: 16px;
+            font-size: 12px;
             /* 字体大小 */
             border-radius: 5px;
             /* 圆角半径 */
@@ -71,6 +71,13 @@
                         <div style="position: relative;display: inline-block;">
                             <img id='show_qrcode' alt="加载中..." :src="'../enQrcode?url='+payUrl" width="210" height="210"
                                 style="display: block;">
+                            <button id="" class="buttonA" onclick="saveQRCode()">保存二维码</button><button id=""
+                                class="buttonA" onclick="jumpWeixin()">跳转到微信</button>
+
+
+
+
+
                             <!--<img onclick="$('#use').hide()" id="use" src="use_1.png" v-if="payType==1"
                              style="position: absolute;top: 50%;left: 50%;width:32px;height:32px;margin-left: -16px;margin-top: -16px">
                         <img onclick="$('#use').hide()" id="use" src="use_2.png" v-if="payType==2"
@@ -128,7 +135,7 @@
 
                     <a href="javascript:void(0)" class="arrow" onclick="aaa()"><i class="ico-arrow"></i></a>
                     <br>
-                    <button id="confirmPayment" onclick="check()">手动确认付款完毕</button>
+                    <button id="" class="buttonA" onclick="check()">手动确认付款完毕</button>
                 </div>
             </div>
 
@@ -287,7 +294,32 @@
                 }
             })
         }
+        //
+        function jumpWeixin() {
 
+            window.location.href = 'weixin://'
+        }
+        function saveQRCode() {
+            // 获取要保存的二维码图片元素
+            var img = document.getElementById('show_qrcode');
+            // 创建一个canvas元素
+            var canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            var ctx = canvas.getContext('2d');
+            // 将图片绘制到canvas上
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            // 将canvas内容转为dataURL格式（这里是图片的Base64编码格式）
+            var dataURL = canvas.toDataURL('image/png');
+            // 创建一个a标签用于模拟点击下载
+            var a = document.createElement('a');
+            a.href = dataURL;
+            a.download = getQueryString("orderId") || "" + 'qr_code.png'; // 设置下载文件名
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
     </script>
 </body>
 
