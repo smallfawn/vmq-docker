@@ -252,7 +252,7 @@
                 return decodeURI(r[2]);
             return null;
         }
-
+        let jumpUrl = ''
         $.post("../getOrder", "orderId=" + getQueryString("orderId"), function (data) {
             if (data.code == 1) {
                 var time = new Date().getTime() - data.data.date * 1000;
@@ -269,7 +269,7 @@
                 } else if (data.data.payType == 2) {
                     data.data.payType1 = "支付宝";
                 }
-
+                jumpUrl = data.data.payUrl
 
                 new Vue({
                     el: '#body',
@@ -331,7 +331,7 @@ alipays://platformapi/startapp?appId=20000056
 
 alipayqr://platformapi/startapp?saId=10000007
 */
-            window.location.href = `alipays://platformapi/startapp?saId=10000007&qrcode=${encodeURIComponent(payurl)}`
+            window.location.href = `alipays://platformapi/startapp?saId=10000007&qrcode=${encodeURIComponent(jumpUrl)}`
         }
         (function identifyDevicePlatform() {
             var os = function () {
