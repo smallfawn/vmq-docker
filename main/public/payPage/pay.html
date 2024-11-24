@@ -301,6 +301,8 @@
             window.location.href = 'weixin://'
         }
         function jumpAlipay() {
+            //encodeURIComponent(payurl)
+            //alipays://platformapi/startapp?saId=10000007&qrcode=encodeURIComponent(payurl)
             /*
             //跳转支付宝支付相应金额
 amount 金额
@@ -329,7 +331,7 @@ alipays://platformapi/startapp?appId=20000056
 
 alipayqr://platformapi/startapp?saId=10000007
 */
-            window.location.href = 'alipays://'
+            window.location.href = `alipays://platformapi/startapp?saId=10000007&qrcode=encodeURIComponent(${payurl})`
         }
         (function identifyDevicePlatform() {
             var os = function () {
