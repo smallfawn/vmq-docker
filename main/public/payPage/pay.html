@@ -331,7 +331,7 @@ alipays://platformapi/startapp?appId=20000056
 
 alipayqr://platformapi/startapp?saId=10000007
 */
-            window.location.href = `alipays://platformapi/startapp?saId=10000007&qrcode=encodeURIComponent(${payurl})`
+            window.location.href = `alipays://platformapi/startapp?saId=10000007&qrcode=${encodeURIComponent(payurl)}`
         }
         (function identifyDevicePlatform() {
             var os = function () {
